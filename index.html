@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TravelGo - Explore the World</title>
+  <style>
+    /* -------- RESET -------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* -------- HEADER -------- */
+    header {
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ff6600;
+    }
+    nav ul {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    nav ul li {
+      font-weight: 500;
+    }
+
+    /* -------- HERO -------- */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') center/cover no-repeat;
+      height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 1rem;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .btn {
+      background: #ff6600;
+      padding: 0.8rem 1.5rem;
+      color: white;
+      border: none;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #e65c00;
+    }
+
+    /* -------- SECTIONS -------- */
+    section {
+      padding: 3rem 1rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      color: #ff6600;
+    }
+
+    /* -------- DESTINATIONS -------- */
+    .destinations {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .destination {
+      padding: 12px;
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .destination img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .destination img:hover {
+      scale: 1.05;
+      transition: 300ms ease-in;
+    }
+    .destination h3 {
+      padding: 1rem;
+      font-size: 1.2rem;
+    }
+
+    /* -------- PACKAGES -------- */
+    .packages {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .package {
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .package img {
+      height: 200px;
+      object-fit: cover;
+    }
+    .package-content {
+      padding: 1rem;
+    }
+    .package-content h4 {
+      color: #ff6600;
+    }
+    .price {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin: 0.5rem 0;
+    }
+
+    /* -------- WHY CHOOSE US -------- */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .feature {
+      background: #fff;
+      border-radius: 6px;
+      padding: 2rem 1rem;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .feature h4 {
+      margin-bottom: 1rem;
+      color: #ff6600;
+    }
+
+    /* -------- TESTIMONIALS -------- */
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .testimonial {
+      background: #fff;
+      border-radius: 6px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      font-style: italic;
+    }
+    .testimonial h4 {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #ff6600;
+    }
+
+    /* -------- FORM -------- */
+    form {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: auto;
+    }
+    form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    /* -------- FOOTER -------- */
+    footer {
+      background: #333;
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    footer p {
+      margin: 0.5rem 0;
+    }
+    .socials a {
+      margin: 0 0.5rem;
+      color: #ff6600;
+    }
+
+    /* -------- RESPONSIVE NAV -------- */
+    @media (max-width: 1024px) {
+      nav ul {
+        flex-direction: column;
+        background: #fff;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        padding: 16px;
+        display: none;
+      }
+      .menu-toggle {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+      nav ul.show {
+        display: flex;
+      }
+    }
+    @media (min-width: 1024px) {
+      .menu-toggle {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav-container">
+      <div class="logo">TravelVtech</div>
+      <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+      <nav>
+        <ul id="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#destinations">Destinations</a></li>
+          <li><a href="#packages">Packages</a></li>
+          <li><a href="#why">Why Us</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#booking">Booking</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div>
+      <h1>Explore The World With Us</h1>
+      <p>Your adventure starts here  discover amazing destinations and packages.</p>
+      <a href="#packages"><button class="btn">View Packages</button></a>
+    </div>
+  </section>
+
+  <!-- DESTINATIONS -->
+  <section id="destinations">
+    <h2 class="section-title">Popular Destinations</h2>
+    <div class="destinations">
+      <div class="destination">
+        <img src="images/paris.png" alt="">
+        <h3>Paris, France</h3>
+      </div>
+      <div class="destination">
+        <img src="images/bali.png" alt="">
+        <h3>Bali, Indonesia</h3>
+      </div>
+      <div class="destination">
+        <img src="images/ny.png" alt="">
+        <h3>New York, USA</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section id="packages">
+    <h2 class="section-title">Tour Packages</h2>
+    <div class="packages">
+      <div class="package">
+        <img src="images/romanticParis.png" alt="">
+        <div class="package-content">
+          <h4>Romantic Paris</h4>
+          <p class="price">$1,200 / person</p>
+          <p>5 nights in a luxury hotel, guided city tours, and more.</p>
+        </div>
+      </div>
+      <div class="package">
+        <img src="images/BaliAdventure.png" alt="">
+        <div class="package-content">
+          <h4>Bali Adventure</h4>
+          <p class="price">$950 / person</p>
+          <p>7 nights beach resort stay, island hopping, and excursions.</p>
+        </div>
+      </div>
+      <div class="package">
+        <img src="images/newyork.png" alt="">
+        <div class="package-content">
+          <h4>New York Explorer</h4>
+          <p class="price">$1,500 / person</p>
+          <p>6 nights in Times Square, Broadway shows, and city passes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section id="why">
+    <h2 class="section-title">Why Choose Us</h2>
+    <div class="features">
+      <div class="feature">
+        <h4>Expert Guides</h4>
+        <p>Our team of professional guides ensures you get the most authentic and enjoyable experience possible.</p>
+      </div>
+      <div class="feature">
+        <h4>Custom Packages</h4>
+        <p>We tailor trips to fit your needs and preferences, ensuring a personalized travel journey.</p>
+      </div>
+      <div class="feature">
+        <h4>Best Price Guarantee</h4>
+        <p>Enjoy world-class travel experiences at competitive prices without compromising on quality.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <h2 class="section-title">What Our Customers Say</h2>
+    <div class="testimonials">
+      <div class="testimonial">
+        "TravelVtech made my honeymoon in Paris unforgettable! The service was top-notch."
+        <h4>- Sarah L.</h4>
+      </div>
+      <div class="testimonial">
+        "Bali was a dream come true. Everything was arranged perfectly from flights to activities."
+        <h4>- David R.</h4>
+      </div>
+      <div class="testimonial">
+        "New York was incredible. I will definitely book with TravelVtech again!"
+        <h4>- Maria P.</h4>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING FORM -->
+  <section id="booking">
+    <h2 class="section-title">Booking Inquiry</h2>
+    <form>
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Your Name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Your Email" required>
+
+      <label for="destination">Destination</label>
+      <select id="destination" required>
+        <option value="">Select Destination</option>
+        <option>Paris</option>
+        <option>Bali</option>
+        <option>New York</option>
+      </select>
+
+      <label for="message">Additional Details</label>
+      <textarea id="message" rows="4" placeholder="Any special requests?"></textarea>
+
+      <button type="submit" class="btn">Send Inquiry</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <p>&copy;2025 TravelVtech. All Rights Reserved.</p>
+    <div class="socials">
+      <a href="#">Facebook</a> |
+      <a href="#">Instagram</a> |
+      <a href="#">Twitter</a>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+  </script>
+
+</body>
+</html>
